@@ -1,0 +1,2579 @@
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (4.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateProducts (1)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "bonus_codes" varchar, "status" varchar, "service" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "1"]]
+  [1m[35m (5.3ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "products" ("title", "bonus_codes", "status", "service", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Halo 4"], ["bonus_codes", "Pre-loaded"], ["status", "Pre-loaded"], ["service", " "], ["created_at", "2015-05-20 14:43:16.977650"], ["updated_at", "2015-05-20 14:43:16.977650"]]
+  [1m[35m (9.0ms)[0m  commit transaction
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "products" ("title", "bonus_codes", "status", "service", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "Samsung Galaxy 4"], ["bonus_codes", "Pre-loaded"], ["status", "via Service"], ["service", "TV"], ["created_at", "2015-05-20 14:43:16.992432"], ["updated_at", "2015-05-20 14:43:16.992432"]]
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("title", "bonus_codes", "status", "service", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Skype $10"], ["bonus_codes", "via Service"], ["status", "via Service"], ["service", "RTG"], ["created_at", "2015-05-20 14:43:17.000902"], ["updated_at", "2015-05-20 14:43:17.000902"]]
+  [1m[35m (5.0ms)[0m  commit transaction
+  [1m[36mProduct Load (9.0ms)[0m  [1mSELECT "products".* FROM "products"[0m
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:45:31 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/railties-4.2.1/lib/rails/templates/rails/welcome/index.html.erb (1.5ms)
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:46:33 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.9ms)[0m  SELECT "products".* FROM "products"
+Completed 200 OK in 159ms (Views: 71.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:48:08 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+Completed 200 OK in 10ms (Views: 7.0ms | ActiveRecord: 0.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBonusCodes (2)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "bonus_codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "bonus_code" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_bonus_codes_on_product_id" ON "bonus_codes" ("product_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "2"]]
+  [1m[36m (10.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bonus_codes_on_product_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bonus_codes_on_product_id' AND type='index'
+[0m
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:53:54 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 37ms (Views: 30.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:53:56 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:53:57 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:53:57 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:59:01 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 33ms (Views: 27.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 17:59:03 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 18:00:10 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 44ms (Views: 35.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/bonus_codes" for 188.163.5.188 at 2015-05-20 18:00:24 +0300
+
+ActionController::RoutingError (No route matches [GET] "/bonus_codes"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/tempfile_reaper.rb:15:in `call'
+  rack (1.6.1) lib/rack/lint.rb:49:in `_call'
+  rack (1.6.1) lib/rack/lint.rb:37:in `call'
+  rack (1.6.1) lib/rack/showexceptions.rb:24:in `call'
+  rack (1.6.1) lib/rack/commonlogger.rb:33:in `call'
+  rack (1.6.1) lib/rack/chunked.rb:54:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /home/deployer/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/deployer/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/deployer/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (11.7ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (53.3ms)
+
+
+Started GET "/bonus_codes" for 188.163.5.188 at 2015-05-20 18:00:43 +0300
+
+ActionController::RoutingError (No route matches [GET] "/bonus_codes"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/tempfile_reaper.rb:15:in `call'
+  rack (1.6.1) lib/rack/lint.rb:49:in `_call'
+  rack (1.6.1) lib/rack/lint.rb:37:in `call'
+  rack (1.6.1) lib/rack/showexceptions.rb:24:in `call'
+  rack (1.6.1) lib/rack/commonlogger.rb:33:in `call'
+  rack (1.6.1) lib/rack/chunked.rb:54:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /home/deployer/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/deployer/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/deployer/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.7ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (46.0ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:00:50 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 6ms (ActiveRecord: 0.4ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.0ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:02:12 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 15ms (ActiveRecord: 0.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.6ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (31.3ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:02:44 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.8ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (35.9ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:02:56 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.0ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (37.8ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:02:58 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.3ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (38.3ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:03:03 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.7ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:03:05 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (23.3ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:03:06 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.9ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.9ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (31.3ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:03:07 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.2ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:03:08 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.7ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:03:08 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.4ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:03:09 +0300
+Processing by BonusCodesController#index as HTML
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.7ms)
+
+
+Started GET "/bonus_codes/validate" for 188.163.5.188 at 2015-05-20 18:04:03 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes"
+Completed 200 OK in 6ms (Views: 1.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2" for 188.163.5.188 at 2015-05-20 18:04:09 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes"[0m
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2" for 188.163.5.188 at 2015-05-20 18:05:11 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 404 Not Found in 18ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=2):
+  app/controllers/bonus_codes_controller.rb:6:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (36.5ms)
+
+
+Started GET "/bonus_codes/validate?product_id" for 188.163.5.188 at 2015-05-20 18:05:19 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>nil}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:6:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.9ms)
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:05:24 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:6:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (35.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:05:41 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 5ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:6:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:05:43 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:6:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "bonus_codes" ("product_id", "bonus_code", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["product_id", 1], ["bonus_code", 3456123], ["created_at", "2015-05-20 15:07:18.804569"], ["updated_at", "2015-05-20 15:07:18.804569"]]
+  [1m[35m (8.1ms)[0m  commit transaction
+  [1m[36mProduct Load (1.5ms)[0m  [1mSELECT "products".* FROM "products"[0m
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes"
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:07:49 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 14ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:6:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.7ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 18:07:54 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes"
+Completed 200 OK in 6ms (Views: 1.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2" for 188.163.5.188 at 2015-05-20 18:07:59 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=2):
+  app/controllers/bonus_codes_controller.rb:6:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (34.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bonus_codes" ("product_id", "bonus_code", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["product_id", 2], ["bonus_code", 378129643], ["created_at", "2015-05-20 15:09:00.904038"], ["updated_at", "2015-05-20 15:09:00.904038"]]
+  [1m[35m (7.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bonus_codes" ("product_id", "bonus_code", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["product_id", 3], ["bonus_code", 981563], ["created_at", "2015-05-20 15:09:00.916133"], ["updated_at", "2015-05-20 15:09:00.916133"]]
+  [1m[36m (4.7ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/bonus_codes/validate?product_id=2" for 188.163.5.188 at 2015-05-20 18:09:40 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes"[0m
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=3" for 188.163.5.188 at 2015-05-20 18:09:49 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes"[0m
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 18:09:53 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes"[0m
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 18:10:35 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 19ms (Views: 0.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2" for 188.163.5.188 at 2015-05-20 18:10:40 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 18:10:44 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 18:25:35 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 19ms (Views: 0.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:25:38 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (35.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:29:34 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 15ms (ActiveRecord: 0.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.7ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:29:35 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.9ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (32.7ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:29:36 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.8ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.8ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (43.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:29:37 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.7ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.5ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:29:39 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.5ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.8ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:29:40 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.6ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:29:40 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.4ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/deployer/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (25.5ms)
+
+
+Started GET "/bonus_codes/validate?product_id=" for 188.163.5.188 at 2015-05-20 18:31:02 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 27ms (ActiveRecord: 0.5ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#show as HTML
+  Parameters: {"product_id"=>"", "code"=>"404"}
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 18:31:13 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2" for 188.163.5.188 at 2015-05-20 18:31:17 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=3" for 188.163.5.188 at 2015-05-20 18:31:19 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:31:22 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.3ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#show as HTML
+  Parameters: {"product_id"=>"4", "code"=>"404"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:32:43 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 404 Not Found in 6ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#show as HTML
+  Parameters: {"product_id"=>"4", "code"=>"404"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:33:07 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 13ms (ActiveRecord: 0.5ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#show as HTML
+  Parameters: {"product_id"=>"4", "code"=>"404"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:33:31 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 13ms (ActiveRecord: 0.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:34:56 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 12ms (ActiveRecord: 0.5ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:34:58 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:34:58 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:34:59 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:34:59 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:34:59 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[36mBonusCode Load (0.5ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.5ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:35:01 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:35:01 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:35:02 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4" for 188.163.5.188 at 2015-05-20 18:35:02 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:35:06 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:36:53 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 15ms (ActiveRecord: 0.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:36:54 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:36:55 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:43:14 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 13ms (ActiveRecord: 0.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"?"}
+  Rendered errors/error404.html (1.2ms)
+Completed 404 Not Found in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:25 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 16ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:28 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:29 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:29 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:30 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:44 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:45 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:46 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:46 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:46 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:52:59 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 14ms (ActiveRecord: 0.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"?"}
+  Rendered errors/error404.html (1.2ms)
+Completed 404 Not Found in 7ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:54:12 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 14ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=?" for 188.163.5.188 at 2015-05-20 18:55:32 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"?"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 15ms (ActiveRecord: 0.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=?):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"?"}
+  Rendered errors/error404.html (1.5ms)
+Completed 404 Not Found in 8ms (Views: 7.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 18:55:35 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%2256324%22" for 188.163.5.188 at 2015-05-20 18:55:58 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"56324\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%223456123%22" for 188.163.5.188 at 2015-05-20 18:56:10 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"3456123\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%223456123%22" for 188.163.5.188 at 2015-05-20 18:56:15 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"3456123\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 18:56:21 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"345612\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 18:56:29 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"345612\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=5&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 18:56:36 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"5", "bonus_code"=>"\"345612\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 5]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=5):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"5", "bonus_code"=>"\"345612\""}
+  Rendered errors/error404.html (0.0ms)
+Completed 404 Not Found in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=5&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:06:52 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"5", "bonus_code"=>"\"345612\""}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 5]]
+Completed 404 Not Found in 14ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=5):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"5", "bonus_code"=>"\"345612\""}
+  Rendered errors/error404.html (1.0ms)
+Completed 404 Not Found in 6ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=5&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:07:30 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"5", "bonus_code"=>"\"345612\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 5]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=5):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"5", "bonus_code"=>"\"345612\""}
+  Rendered errors/error404.html (0.0ms)
+Completed 404 Not Found in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:07:36 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"345612\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:09:30 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"345612\""}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 17ms (Views: 0.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:09:36 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"345612\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:09:42 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4", "bonus_code"=>"\"345612\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"4", "bonus_code"=>"\"345612\""}
+  Rendered errors/error404.html (1.1ms)
+Completed 404 Not Found in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:11:54 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4", "bonus_code"=>"\"345612\""}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 15ms (ActiveRecord: 0.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"4", "bonus_code"=>"\"345612\""}
+  Rendered errors/error404.html (1.3ms)
+Completed 404 Not Found in 7ms (Views: 6.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:11:58 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"345612\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 7ms (Views: 0.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:12:05 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 0  in 61ms (Views: 55.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:12:54 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 0  in 31ms (Views: 25.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:12:57 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mCACHE (0.0ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 0  in 5ms (Views: 5.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:13:09 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 0  in 45ms (Views: 37.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:13:26 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 0  in 37ms (Views: 31.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:22 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 0  in 52ms (Views: 43.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:39 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 32ms (Views: 27.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:55 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.6ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 30ms (Views: 24.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:57 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 6ms (Views: 5.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:57 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 6ms (Views: 5.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:58 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 5ms (Views: 4.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:58 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 5ms (Views: 4.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:59 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 7ms (Views: 6.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:59 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 6ms (Views: 5.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:14:59 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 5ms (Views: 4.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:00 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 8ms (Views: 7.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:00 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 403 Forbidden in 5ms (Views: 4.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:11 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 25ms (Views: 20.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:12 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:12 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:13 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:45 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 47ms (Views: 39.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:47 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:47 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:47 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:48 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:48 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.6ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:48 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:49 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:49 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:49 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:50 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:50 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:50 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:51 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:51 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:51 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:51 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:52 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:52 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:15:53 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:17:28 +0300
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 22ms (Views: 17.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22345612%22" for 188.163.5.188 at 2015-05-20 19:17:37 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"345612\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2" for 188.163.5.188 at 2015-05-20 19:17:47 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 188.163.5.188 at 2015-05-20 19:19:46 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products"
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 1]]
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?  [["product_id", 2]]
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."product_id" = ?[0m  [["product_id", 3]]
+Completed 200 OK in 42ms (Views: 35.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2" for 188.163.5.188 at 2015-05-20 19:20:06 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:20:28 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:48:20 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 0  in 17ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:49:31 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:49:43 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.6ms)
+
+NameError (undefined local variable or method `error200' for #<BonusCodesController:0x007f686b252468>):
+  app/controllers/bonus_codes_controller.rb:5:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:49:46 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms)
+
+NameError (undefined local variable or method `error200' for #<BonusCodesController:0x007f686af21820>):
+  app/controllers/bonus_codes_controller.rb:5:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:49:46 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms)
+
+NameError (undefined local variable or method `error200' for #<BonusCodesController:0x007f686a42eeb8>):
+  app/controllers/bonus_codes_controller.rb:5:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:49:47 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms)
+
+NameError (undefined local variable or method `error200' for #<BonusCodesController:0x007f686a2672d8>):
+  app/controllers/bonus_codes_controller.rb:5:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:50:05 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 0  in 8ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:50:21 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 13ms (Views: 0.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:50:39 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 8ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:50:40 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:50:41 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:50:41 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:50:41 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:06 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:07 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:07 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:08 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:08 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:08 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:57 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 9ms (Views: 0.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:59 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:52:59 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:53:10 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 19ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:54:20 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered text template (0.1ms)
+Completed 200 OK in 17ms (Views: 6.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:54:47 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 10ms (Views: 0.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:54:59 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered text template (0.0ms)
+Completed 403 Forbidden in 27ms (Views: 0.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:55:08 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.7ms)
+
+NameError (undefined local variable or method `error403' for #<BonusCodesController:0x007fc1700f7420>):
+  app/controllers/bonus_codes_controller.rb:6:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:55:35 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:55:39 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:56:44 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 18ms (Views: 0.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:56:50 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"4", "bonus_code"=>"\"378129643\""}
+  Rendered errors/error404.html (1.5ms)
+Completed 404 Not Found in 3ms (Views: 2.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:56:54 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:56:57 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:58:45 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.7ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:58:46 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:58:47 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:58:47 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:58:48 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:58:50 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:58:54 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:58:58 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:59:14 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.6ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:59:17 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 19:59:20 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template /errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:00:29 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.6ms)
+
+ActionView::MissingTemplate (Missing template bonus_codes/errors#error200, application/errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:00:30 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template bonus_codes/errors#error200, application/errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:00:34 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template bonus_codes/errors#error200, application/errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:00:38 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template bonus_codes/errors#error200, application/errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:01:16 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.9ms)
+
+ActionView::MissingTemplate (Missing template bonus_codes/errors#error200, application/errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:01:20 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template bonus_codes/errors#error200, application/errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:01:22 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template bonus_codes/errors#error200, application/errors#error200 with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/deployer/rails-api-projects/products/app/views"
+):
+  app/controllers/bonus_codes_controller.rb:8:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:01:57 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 8ms (Views: 1.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:02:03 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:02:07 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:02:14 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"4", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 4]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find BonusCode with 'id'=4):
+  app/controllers/bonus_codes_controller.rb:4:in `index'
+
+
+Processing by ErrorsController#error404 as HTML
+  Parameters: {"product_id"=>"4", "bonus_code"=>"\"378129643\""}
+  Rendered errors/error404.html (1.7ms)
+Completed 404 Not Found in 3ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bonus_codes/validate?product_id=4&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:23:30 +0300
+
+SyntaxError (/home/deployer/rails-api-projects/products/app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+...and return unless @bonus_codes, :only => [:product_id, :bonu...
+...                               ^):
+  app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=4&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:23:31 +0300
+
+SyntaxError (/home/deployer/rails-api-projects/products/app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+...and return unless @bonus_codes, :only => [:product_id, :bonu...
+...                               ^):
+  app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:23:35 +0300
+
+SyntaxError (/home/deployer/rails-api-projects/products/app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+...and return unless @bonus_codes, :only => [:product_id, :bonu...
+...                               ^):
+  app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 20:23:40 +0300
+
+SyntaxError (/home/deployer/rails-api-projects/products/app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+...and return unless @bonus_codes, :only => [:product_id, :bonu...
+...                               ^):
+  app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 20:23:47 +0300
+
+SyntaxError (/home/deployer/rails-api-projects/products/app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+...and return unless @bonus_codes, :only => [:product_id, :bonu...
+...                               ^):
+  app/controllers/bonus_codes_controller.rb:9: syntax error, unexpected ',', expecting keyword_end
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 21:14:06 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[35mBonusCode Load (0.3ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.7ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a3948a90>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 21:14:08 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a366d938>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 21:14:09 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a3500618>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 21:14:09 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a33a4800>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1" for 188.163.5.188 at 2015-05-20 21:14:09 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a325dac8>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:14:15 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a2917568>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=1&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:14:19 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"1", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a274d6d8>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=2&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:14:23 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"2", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a254d0b8>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:14:26 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a235fb70>):
+  app/controllers/bonus_codes_controller.rb:10:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:14:51 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.3ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 200 OK in 16ms (Views: 0.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:15:12 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 200 OK in 13ms (Views: 0.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:15:13 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (3.7ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:15:34 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.8ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a3cdafa0>):
+  app/controllers/bonus_codes_controller.rb:11:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:15:36 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a3b4d4f8>):
+  app/controllers/bonus_codes_controller.rb:11:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:15:36 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a3a599e8>):
+  app/controllers/bonus_codes_controller.rb:11:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:15:36 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.1ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `bonus_code_url' for #<BonusCodesController:0x007fe1a396c170>):
+  app/controllers/bonus_codes_controller.rb:11:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:15:56 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.1ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 200 OK in 8ms (Views: 1.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:16:03 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.4ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.2ms)
+
+NameError (uninitialized constant BonusCodesController::BonusCodes):
+  app/controllers/bonus_codes_controller.rb:11:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:16:11 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[35mBonusCode Load (0.2ms)[0m  SELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1  [["id", 3]]
+Completed 200 OK in 13ms (Views: 1.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:16:19 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mBonusCode Load (0.4ms)[0m  SELECT "bonus_codes".* FROM "bonus_codes"
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.9ms)
+
+NoMethodError (undefined method `to_model' for #<BonusCode::ActiveRecord_Relation:0x007fe1a235d168>):
+  app/controllers/bonus_codes_controller.rb:11:in `index'
+
+
+
+
+Started GET "/bonus_codes/validate?product_id=3&bonus_code=%22378129643%22" for 188.163.5.188 at 2015-05-20 21:16:28 +0300
+Processing by BonusCodesController#index as HTML
+  Parameters: {"product_id"=>"3", "bonus_code"=>"\"378129643\""}
+  [1m[36mBonusCode Load (0.2ms)[0m  [1mSELECT  "bonus_codes".* FROM "bonus_codes" WHERE "bonus_codes"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 200 OK in 10ms (Views: 0.6ms | ActiveRecord: 0.7ms)

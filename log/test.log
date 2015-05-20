@@ -1,0 +1,293 @@
+  [1m[36m (6.6ms)[0m  [1mCREATE TABLE "bonus_codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "bonus_code" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (5.5ms)[0m  [1mCREATE  INDEX "index_bonus_codes_on_product_id" ON "bonus_codes" ("product_id")[0m
+  [1m[35m (5.3ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "bonus_codes" varchar, "status" varchar, "service" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (5.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (5.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (4.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('2')
+  [1m[36m (3.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:02:14 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.2ms)
+Completed 404 Not Found in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:02:57 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.2ms)
+Completed 404 Not Found in 7ms (Views: 6.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:02:57 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.0ms)
+Completed 404 Not Found in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:03:18 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.3ms)
+Completed 404 Not Found in 7ms (Views: 6.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:03:18 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.0ms)
+Completed 404 Not Found in 0ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:03:51 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.3ms)
+Completed 404 Not Found in 7ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:03:51 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.1ms)
+Completed 404 Not Found in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:04:40 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.0ms)
+Completed 404 Not Found in 5ms (Views: 5.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/200" for 127.0.0.1 at 2015-05-20 19:05:30 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.9ms)
+Completed 404 Not Found in 5ms (Views: 4.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:06:07 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.3ms)
+Completed 404 Not Found in 7ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:06:11 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.1ms)
+Completed 404 Not Found in 7ms (Views: 6.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:24:12 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.2ms)
+Completed 404 Not Found in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:24:12 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.0ms)
+Completed 404 Not Found in 0ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:25:21 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.0ms)
+Completed 404 Not Found in 6ms (Views: 5.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:25:21 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.0ms)
+Completed 404 Not Found in 0ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:26:17 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.0ms)
+Completed 404 Not Found in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:27:50 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.9ms)
+Completed 404 Not Found in 5ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:27:56 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.9ms)
+Completed 404 Not Found in 7ms (Views: 6.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:31:59 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (1.2ms)
+Completed 404 Not Found in 6ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:33:00 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.1ms)
+Completed 403 Forbidden in 6ms (Views: 5.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:34:07 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.1ms)
+Completed 403 Forbidden in 6ms (Views: 5.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:35:08 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.0ms)
+Completed 403 Forbidden in 6ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:35:50 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.0ms)
+Completed 403 Forbidden in 6ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:36:31 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.0ms)
+Completed 403 Forbidden in 6ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:38:22 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.3ms)
+Completed 403 Forbidden in 7ms (Views: 6.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:38:22 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.4ms)
+Completed 404 Not Found in 1ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:39:25 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.1ms)
+Completed 403 Forbidden in 6ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:39:25 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.3ms)
+Completed 404 Not Found in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/200" for 127.0.0.1 at 2015-05-20 19:39:26 +0300
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:41:58 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.0ms)
+Completed 403 Forbidden in 5ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:41:58 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.3ms)
+Completed 404 Not Found in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Started GET "/200" for 127.0.0.1 at 2015-05-20 19:41:58 +0300
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:44:09 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.1ms)
+Completed 403 Forbidden in 6ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:44:09 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.3ms)
+Completed 404 Not Found in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  begin transaction
+Started GET "/200" for 127.0.0.1 at 2015-05-20 19:44:09 +0300
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:44:50 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.0ms)
+Completed 403 Forbidden in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:44:50 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.4ms)
+Completed 404 Not Found in 1ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/200" for 127.0.0.1 at 2015-05-20 19:44:50 +0300
+Processing by ErrorsController#error200 as HTML
+  Rendered errors/error200.html (0.4ms)
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:44:55 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (1.2ms)
+Completed 403 Forbidden in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:44:55 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.4ms)
+Completed 404 Not Found in 1ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/200" for 127.0.0.1 at 2015-05-20 19:44:55 +0300
+Processing by ErrorsController#error200 as HTML
+  Rendered errors/error200.html (0.3ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/403" for 127.0.0.1 at 2015-05-20 19:46:43 +0300
+Processing by ErrorsController#error403 as HTML
+  Rendered errors/error403.html (0.9ms)
+Completed 403 Forbidden in 5ms (Views: 5.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/404" for 127.0.0.1 at 2015-05-20 19:46:43 +0300
+Processing by ErrorsController#error404 as HTML
+  Rendered errors/error404.html (0.3ms)
+Completed 404 Not Found in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Started GET "/200" for 127.0.0.1 at 2015-05-20 19:46:43 +0300
+Processing by ErrorsController#error200 as HTML
+  Rendered errors/error200.html (0.3ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m

@@ -1,0 +1,6 @@
+Product.create(title: "Halo 4", bonus_codes: "Pre-loaded", status: "Pre-loaded", service: " ")
+Product.create(title: "Samsung Galaxy 4", bonus_codes: "Pre-loaded", status: "via Service", service: "TV")
+Product.create(title: "Skype $10", bonus_codes: "via Service", status: "via Service", service: "RTG")
+BonusCode.create(product_id: "1", bonus_code: "3456123")
+BonusCode.create(product_id: "2", bonus_code: "378129643")
+BonusCode.create(product_id: "3", bonus_code: "981563")
