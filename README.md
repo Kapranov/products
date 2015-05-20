@@ -41,18 +41,3 @@ HTTP 403 FORBIDDEN if bonus code hasn't been sold.
 vlada@adility.com
 
 #### 20 May 2015 Oleg G.Kapranov
-
-http://railsua.com/tutorials/28
-https://quickleft.com/blog/keeping-your-json-response-lean-in-rails/
-
-https://relishapp.com/rspec/rspec-rails/v/3-2/docs/controller-specs
-http://ahimmelstoss.github.io/blog/2014/07/27/testing-a-rails-api-with-rspec/
-https://gist.github.com/jayncoke/4a7c1a67fdc464ad66e8
-http://rtmatheson.com/2009/07/loading-a-single-fixture-in-rails/
-https://semaphoreci.com/blog/2014/01/14/rails-testing-antipatterns-fixtures-and-factories.html
-http://blog.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api/
-https://github.com/enocom/json-api
-http://commandercoriander.net/blog/2014/01/04/test-driving-a-json-api-in-rails/
-https://blog.engineyard.com/2015/active-model-serializers
-http://travisonrails.com/2013/02/20/shoulda-matcher-model-extras
-
